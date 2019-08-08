@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+class Human{
+    constructor(name, age, dateOfBirth){
+        this.name =(typeof name=='string')? name: 'ошибка ввода данных';
+        this.age = (typeof age=='number')?age: 'ошибка ввода данных';
+        this.dateOfBirth = (typeof dateOfBirth=='string'||'object')? dateOfBirth: 'ошибка ввода данных';
+    }
+    displayInfo(){
+        return this.name+' ' + this.age + ' ' + this.dateOfBirth;
+    }
+
+}
+
+class Employee extends Human{
+    constructor(name, age, dateOfBirth,salary, department){
+        super(name, age, dateOfBirth);
+        this.salary = (typeof salary=='number') ? salary: 'ошибка ввода данных';
+        this.department = (typeof department =='string') ? department:'ошибка ввода данных';
+    }
+    displayInfo(){
+        return super.displayInfo() + ' ' + this.salary + ' ' + this.department;
+    }
+
+}
+
+class Manager extends Employee{
+    constructor(name, age, dateOfBirth, salary, department){
+        super(name, age, dateOfBirth, salary, department);
+        this.developers = [];
+    }
+    addDeveloper(developer){
+        this.developers.push(developer);
+        developer.manager=this.name;
+    }
+    removeDeveloper(developer){
+        this.developers.splice(this.developers.indexOf(developer),1);
+        developer.manager='';
+    }
+}
+
+class Developer extends Employee{
+    constructor(name, age, dateOfBirth, salary, department){
+        super(name, age, dateOfBirth, salary, department);
+        this.manager = '';
+    }
+    ChangeManager(manager){
+        this.manager=manager.name;
+    }
+}
+
+
+
+let employee = new Employee('Serg',52,'30.06.2019',25000,'Разработка');
+console.log(employee.displayInfo());
+let manager1 = new Manager('a', 1, 1, 1, 'department_1');
+console.log(manager1.displayInfo());
+let manager2 = new Manager('s', 2, 2, 2, 'department_1');
+let developer1 = new Developer('g', 10, 10, 10, 'department_2');
+let developer2 = new Developer('v', 10, 10, 10, 'department_2');
+console.log(developer1.displayInfo());
+manager1.addDeveloper(developer1);
+manager1.addDeveloper(developer2);
+manager1.removeDeveloper(developer2);
+console.log(manager1.developers);
+developer2.ChangeManager(manager2);
+console.log(developer2.manager);
+
+</script>
+
+</body>
+</html>
