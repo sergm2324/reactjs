@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let callback = function callback() {
+        console.log('Привет');
+    };
+
+    function loop(times=0, callback=null) {
+        if(callback){
+            for (let i=0;i<times;i++){
+                callback();
+            }
+        }
+    }
+
+    loop(3, callback);
+
+</script>
+</body>
+</html>
