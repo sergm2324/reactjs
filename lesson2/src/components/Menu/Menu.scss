@@ -1,0 +1,14 @@
+.menu{
+  display: flex;
+  justify-content: flex-start;
+  list-style: none;
+}
+
+.menu  a {
+  text-decoration: none;
+  display: block;
+  padding: 1em;
+  border-right: 1px solid #ADC0CE;
+  background: rgba(173, 192, 206, .3);
+  color: #29838C;
+}
