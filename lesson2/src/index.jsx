@@ -1,20 +1,26 @@
-import Human from './components/user'
-import MyName from "./components/myname";
-
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 
-let me = new Human('Serg', 'T');
-me.sayHi();
-let name = new MyName('Sergey', 'Plyusnin');
-name.sayName();
-let serg = name.Name();
+import { Container } from './components/Container';
+import { Menu } from './components/Menu';
+import { Login } from './components/Login';
+
+const items = [
+    {href: '/', title: 'Home'},
+    {href: '/news', title: 'News'},
+    {href: '/blog', title: 'Blog'}
+];
+
 
 class App extends Component {
-    render() {
+    render () {
         return (
-            <div>{serg}</div>
-        );
+            <div className="test1">
+                <Container>
+                    <Menu items_prop={ items } title={'Меню'}></Menu> <Login/>
+                </Container>
+            </div>
+        )
     }
 }
 
