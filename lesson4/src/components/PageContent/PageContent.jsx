@@ -7,10 +7,16 @@ import {SearchWidget} from './SearchWidget/SearchWidget'
 import {CategoriesWidget} from './CategoriesWidget/CategoriesWidget'
 import {SideWidget} from './SideWidget/SideWidget'
 
+
 export class PageContent extends Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      varPost: <BlogPost/>,
+    };
+  };
   render() {
-
+    const {varPost} = this.state;
     return (
         <Fragment>
         <div className="container">
@@ -23,12 +29,10 @@ export class PageContent extends Component {
               <h1 className="my-4">Page Heading
                 <small>Secondary Text</small>
               </h1>
+              {varPost}
+              {varPost}
+              {varPost}
 
-            <BlogPost/>
-            <BlogPost/>
-            <BlogPost/>
-            <BlogPost/>
-            <BlogPost/>
             <Pagination/>
             </div>
             <div className="col-md-4">
