@@ -1,0 +1,1 @@
+export {SideWidget} from './SideWidget';

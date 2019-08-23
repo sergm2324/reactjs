@@ -1,0 +1,10 @@
+.row{
+    margin-top: 56px;
+}
+#root > div > div > div > div.col-md-8 > h1 > small{
+    margin-left: 10px;
+}
+
+div.card-footer.text-muted > a{
+    margin-left: 10px;
+}
