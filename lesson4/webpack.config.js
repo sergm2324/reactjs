@@ -1,15 +1,21 @@
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractLoader = require('mini-css-extract-plugin');
 
 module.exports = {
-    entry: path.resolve(__dirname, 'src', 'index.jsx'),
+    entry: {
+        main: path.resolve(__dirname, 'src', 'index.jsx'),
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.[chunkhash].js',
+        filename: 'bundle.js',
     },
     resolve: {
         extensions: ['.js', '.jsx'],
+        alias: {
+            components: path.resolve(__dirname, 'src', 'components'),
+            containers: path.resolve(__dirname, 'src', 'containers'),
+        },
     },
     module: {
         rules: [
@@ -17,27 +23,26 @@ module.exports = {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader',
-                },
+                    loader: 'babel-loader'
+                }
             },
             {
-                test: /\.s?css$/,
-                use: [
-                    'style-loader',
-                    MiniCssExtractLoader.loader,
-                    'css-loader',
-                    'sass-loader',
-                ],
-            },
-        ],
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader'],
+                })
+            }
+        ]
+    },
+    devServer: {
+        historyApiFallback: true,
     },
     plugins: [
-        new MiniCssExtractLoader({
-            filename: 'style.[contenthash].css',
-        }),
+        new ExtractTextPlugin({ filename: 'style.css' }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src', 'index.html'),
             filename: 'index.html',
-        }),
-    ],
+        })
+    ]
 }
