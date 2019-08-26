@@ -1,11 +1,19 @@
 import './BlogPost.css';
 
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom'
 
 export class BlogPost extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+
+    };
+  }
 
   render() {
-    const {title, body} = this.props;
+    const {comments, title, body, id} = this.props;
     return (
         <Fragment>
           <div className="card mb-4">
@@ -13,7 +21,9 @@ export class BlogPost extends Component {
             <div className="card-body">
               <h2 className="card-title">{title}</h2>
               <p className="card-text">{body}</p>
-              <a href="#" className="btn btn-primary">Read More &rarr;</a>
+
+              <Link to={`/blog/22`} className="btn btn-primary">Read More &rarr;</Link>
+
             </div>
             <div className="card-footer text-muted">
               Posted on January 1, 2017 by
