@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import ReactDom from 'react-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import routes from './routes';
 
 import {Navigation} from './components/Navigation'
 import {PageContent} from './components/PageContent'
@@ -24,40 +26,44 @@ class App extends Component {
         };
     };
 
-    handleClickMenu = (event) => {
-        event.preventDefault();
-        menuItems.forEach(element => {
-            element['title'] === event.target.text ? element['classActive'] = 'active' : delete element['classActive'];
-        });
-
-        switch (event.target.text) {
-            case 'Главная':
-                this.setState({varElem: <MainContainer/>});
-                break;
-            case 'Блог':
-                this.setState({varElem: <PageContent/>});
-                break;
-            case 'Комментарии':
-                this.setState({varElem: <CommentsContainer/>});
-                break;
-            case 'Пользователи':
-                this.setState({varElem: <UserContainer/>});
-                break;
-            default:
-                break;
-        }
-    };
+    // handleClickMenu = (event) => {
+    //     event.preventDefault();
+    //     menuItems.forEach(element => {
+    //         element['title'] === event.target.text ? element['classActive'] = 'active' : delete element['classActive'];
+    //     });
+    //
+    //     switch (event.target.text) {
+    //         case 'Главная':
+    //             this.setState({varElem: <MainContainer/>});
+    //             break;
+    //         case 'Блог':
+    //             this.setState({varElem: <PageContent/>});
+    //             break;
+    //         case 'Комментарии':
+    //             this.setState({varElem: <CommentsContainer/>});
+    //             break;
+    //         case 'Пользователи':
+    //             this.setState({varElem: <UserContainer/>});
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // };
 
     render() {
         const {varElem} = this.state;
         return (
             <div>
-                <Navigation items={menuItems} handleClickMenu={this.handleClickMenu}/>
-                {varElem}
+                {/*<Navigation items={menuItems} handleClickMenu={this.handleClickMenu}/>*/}
+                <Navigation items={menuItems} />
+                <Switch>
+                { routes.map ((route, idx) => <Route key={idx} {...route} /> ) }
+                </Switch>
+                {/*{varElem}*/}
                 <Footer/>
             </div>
         )
     }
 }
 
-ReactDom.render(<App/>, document.getElementById('root'));
+ReactDom.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));

@@ -2,7 +2,7 @@ import './Navigation.css';
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import {PageContent} from "../PageContent";
+import { Link } from 'react-router-dom'
 
 export class Navigation extends Component {
     constructor(props) {
@@ -39,8 +39,8 @@ export class Navigation extends Component {
                             <ul className="navbar-nav ml-auto">
 
                                 {items.map((item) =>
-                                    <li className="nav-item" key={item.id} ><a className="nav-link" href={item.href}
-                                                                               onClick={handleClickMenu}>{item.title}</a>
+                                    <li className="nav-item" key={item.id} ><Link className="nav-link" to={item.href}
+                                                                               >{item.title}</Link>
                                     </li>
                                 )}
 
