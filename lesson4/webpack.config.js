@@ -15,6 +15,8 @@ module.exports = {
         alias: {
             components: path.resolve(__dirname, 'src', 'components'),
             containers: path.resolve(__dirname, 'src', 'containers'),
+            reducers: path.resolve(__dirname, 'src', 'reducers'),
+            actions: path.resolve(__dirname, 'src', 'actions'),
         },
     },
     module: {
@@ -36,7 +38,8 @@ module.exports = {
         ]
     },
     devServer: {
-        historyApiFallback: true,
+        open: true,
+        historyApiFallback: true
     },
     plugins: [
         new ExtractTextPlugin({ filename: 'style.css' }),

@@ -3,12 +3,13 @@ import ReactDom from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import routes from './routes';
 
+import { Provider } from 'react-redux'
+import store from './store' //Объект store
+
 import {Navigation} from './components/Navigation'
 import {PageContent} from './components/PageContent'
 import {Footer} from './components/Footer'
 import {MainContainer} from './components/MainContainer'
-import {CommentsContainer} from './components/CommentsContainer'
-import {UserContainer} from './components/UserContainer'
 
 const menuItems = [
     {href: '/', title: 'Главная', id: 1},
@@ -66,4 +67,4 @@ class App extends Component {
     }
 }
 
-ReactDom.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));
+ReactDom.render(<Provider store={store}><BrowserRouter><App /></BrowserRouter></Provider>, document.getElementById('root'));
