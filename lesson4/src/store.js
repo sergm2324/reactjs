@@ -1,4 +1,20 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import rootReducer from 'reducers'
+import thunk from 'redux-thunk'
 
-export default createStore (rootReducer) //экспорт объекта хранилища (STORE)
+//import logger from 'redux-logger'
+
+function logger(store) {
+    return function (next) {
+        return function (action) {
+            console.log('action', action);
+            console.log('prev state', store.getState());
+
+            let result = next (action);
+            console.log('next state', store.getState());
+            return result;
+        }
+    }
+}
+
+export default createStore (rootReducer, applyMiddleware(logger, thunk)) //экспорт объекта хранилища (STORE)
