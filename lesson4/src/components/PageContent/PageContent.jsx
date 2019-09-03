@@ -1,13 +1,14 @@
 import './PageContent.css';
 
 import React, { Component, Fragment } from 'react';
-import {BlogPost} from './BlogPost/BlogPost'
+
 import {Pagination} from './Pagination/Pagination'
 import {SearchWidget} from './SearchWidget/SearchWidget'
 import {CategoriesWidget} from './CategoriesWidget/CategoriesWidget'
 import {SideWidget} from './SideWidget/SideWidget'
 
-import {PostsContainer} from 'containers/PostsContainer'
+
+import PostsContainer from 'containers/PostsContainer'
 
 
 export class PageContent extends Component {
@@ -20,10 +21,10 @@ export class PageContent extends Component {
 
   handleSearch = (reg) => {
     this.setState ({userSearch: reg})
-  }
+  };
 
   render() {
-
+      const { posts } = this.state;
     return (
         <Fragment>
           <div className="container">

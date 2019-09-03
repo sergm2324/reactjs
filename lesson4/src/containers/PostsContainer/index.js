@@ -1,1 +1,1 @@
-export {PostsContainer} from './PostsContainer';
+export default from './PostsContainer';
