@@ -4,7 +4,8 @@ import { loadStarted, loadCompleted, loadFailed } from 'actions/comments'
 
 const initialState = {
     loading: false,
-    entities: []
+    entities: [],
+    page: 1
 };
 
 export default handleActions ({
@@ -18,7 +19,8 @@ export default handleActions ({
         return {
             ...state,
             loading: false,
-            entities: state.entities.concat (action.payload)
+            entities: state.entities.concat (action.payload),
+            page: state.page + 1
         }
     },
     [loadFailed]: (state) => {

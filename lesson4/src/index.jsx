@@ -16,6 +16,7 @@ const menuItems = [
     {href: '/blog', title: 'Блог', id: 2},
     {href: '/comments', title: 'Комментарии', id: 3},
     {href: '/users', title: 'Пользователи', id: 4},
+    {href: '/messages', title: 'Сообщения', id: 5},
 ];
 
 
